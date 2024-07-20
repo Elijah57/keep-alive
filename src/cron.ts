@@ -6,6 +6,7 @@ import * as http from "http"
 const server = http.createServer()
 const wa_bot = process.env.WA_BOT as string;
 const the_keeper = process.env.THE_KEEPER as string;
+const smart_learn = process.env.SMART as string;
 
 // Listen to the request event
 server.on('request', (request, res) => {
@@ -23,6 +24,10 @@ cron.schedule("*/1 * * * *", async ()=>{
 
       const revive_the_keeper = await axios.get(the_keeper);
       console.log(`the keeper says ${revive_the_keeper.data}`);
+
+      const revive_smart = await axios.get(smart_learn);
+      console.log(`the smart learn says ${revive_smart.data}`);
+
     }catch (error){
       console.error(error)
     }
